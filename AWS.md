@@ -68,6 +68,6 @@ Secondary index consists of attributes that are projected, or copied, from the t
 
 #SQS
 
-#Kiniesis
+#Kinesis
 
 #Redshift
