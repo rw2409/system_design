@@ -67,7 +67,8 @@ Secondary index consists of attributes that are projected, or copied, from the t
   1.  If bulk read, swich to use 'CloudFront' CDN.
 
 #SQS
-
 #Kinesis
+
+#SWF
 
 #Redshift
