@@ -55,8 +55,7 @@ Secondary index consists of attributes that are projected, or copied, from the t
 * lives in the region specified
 * DNS naming conventions
 * not create/delete buckets in high availability code path
-
-##SNS Notification on updates.
+* SNS Notification on updates.
 
 ##Best practices
 1. With write > 100 or read > 300 RPS see (details)[http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html]
@@ -67,6 +66,31 @@ Secondary index consists of attributes that are projected, or copied, from the t
   1.  If bulk read, swich to use 'CloudFront' CDN.
 
 #SQS
+##Properties
+* multiple readers/writers
+* SQS message size 256KB, bigger data could store pointer to S3 object
+* At least once delivery, consumers needs idempotent
+* message order is **NOT guaranteed**, needs version number, sequence information or timestamp
+* delay queue to be used to postpone messages
+* short polling behavior: samples a subset of servers. (subset of all messages returned)
+
+##Concepts
+* QueueName: URL
+* MessageID: generated upon sendMessage() response, char(100), can be used to identify message but not delete
+* Receipt Handle: char(1024)
+  * Each time you receive a message from a queue, you receive a receipt handle for that message. 
+  * The handle is associated with the act of receiving the message, not with the message itself.
+  * To delete the message or to change the message visibility, you must provide the receipt handle and not the message ID. 
+  * This means you must always receive a message before you can delete it (you can't put a message into the queue and then recall it).
+* Visibility Timeout
+  * SQS does not delete message after received, instead it blockes the message with visibility timeout
+  * 120,000 limit of inflight messages (received but not yet deleted)
+  * If the message has different visibility timeout, we can forward to multiple queues with different timeout
+* Retention period: messages automatically deleted after retention period.
+* Delay Queue:  Delay queues allow you to postpone the delivery of new messages in a queue for a specific number of seconds.
+* Dead Letter Queue: A dead letter queue is a queue that other (source) queues can target to send messages that for some reason could not be successfully processed.
+  * A primary benefit of using a dead letter queue is the ability to sideline and isolate the unsuccessfully processed messages. 
+
 #Kinesis
 
 #SWF
