@@ -10,7 +10,7 @@ If you are already familiar with the basics (given below) it will take you ~2 mo
 - [ ] [basics](#basics)
 - [ ] [How to answer in interviews](#howtoans)
 - [ ] [Steps how I approach the system design questions in interviews](#myapproach)
-- [ ] [Common Design questions](#designques)
+- [ ] [Common Design questions](https://github.com/rw2409/system_design/blob/master/ClassicalQuestions)
 - [ ] [architecture](#architecture)
 - [ ] [company engineering blog links](#blog)
 - [ ] [Low on time ?](#tldr)
@@ -70,27 +70,6 @@ These are the steps I go through mentally in the interviews, followed by actual 
 * g) After I have my components in place, what I generally try to do is look for minor optimization in various places according to the usecases, various tradeoffs that will help in better scaling in 99% cases.
 * h) [Scaling out or up]  (http://highscalability.com/blog/2014/5/12/4-architecture-issues-when-scaling-web-applications-bottlene.html)
 * i) Check with the interviewer is there any other special case he is looking to solve? Also it really helps if you know about the company you are interviewing with, what its architecture is, what will the interviewer have more interest in based on the company and what he works on? 
-
-## <a name='designques'> Common Design questions </a>
-It generally depends what you are and you will be working on. Also what your level is but these are some of the more frequent interview questions.
-
-* Design amazon's frequently viewed product page (eg. which shows the last 5 items you saw)
-* Design an online poker game for multiplayer. Solve for persistence, concurrency, scale . Draw the ER diagram for this 
-* Design a [url compression system] (http://www.hiredintech.com/system-design/the-system-design-process/)
-* [Search engine](http://infolab.stanford.edu/~backrub/google.html) (generally asked with people who have some domain knowledge ) : basic crawling, collection, hashing etc. Dependes on your expertise on this topic
-* Design dropbox's architecture. [good talk on this](https://www.youtube.com/watch?v=PE4gwstWhmc)
-* Design a [picture sharing website](http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html). How will you store thumbnails, photos? Usage of CDNS? caching at various layers etc.
-* * Design a news feed (eg facebook , twitter): [news feed](http://www.quora.com/Software-Engineering-Best-Practices/What-are-best-practices-for-building-something-like-a-News-Feed)
-* Design a product based on maps, eg hotel / ATM finder given a location. 
-* Design malloc, free and [garbage collection system](http://courses.cs.washington.edu/courses/csep521/07wi/prj/rick.pdf) . What data structures to use? decorator pattern over malloc etc.
-* Design a site like [junglee.com](http://www.junglee.com/) i.e price comparision , availability on ecommerce websites. When and will you cache, how much to query, how to crawl efficiently over ecommerce sites, sharding of dbs, basic db design
-* A web application for chatting, eg [whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html), facebook chat. Issues of each, scaling problems, status and availablility notification etc.
-* Design a system for collaberating over a document simulataneously (eg [google docs](https://neil.fraser.name/writing/sync/))
-* (very common:) top 'n' or most frequent items of a running stream of data
-* Design election commission architecture :
- Let's say we work with the Election Commission. On Counting day, we want to collate the votes received at the lakhs of voting booths all over the country. Each booth has a voting machine, which, when connected to the network, returns an array of the form {[party_id, num_votes],[party_id_2, num_votes_2],...}. We want to collect these and get the current scores in real time. The report we need continuously is how many seats is each party leading in. Please design a system for this.
-* Design a logging system
- (For web applications, it is common to have a large number of servers running the same application, with a load balancer in front to distribute the incoming requests. In this scenario, we want to check and alarm in case an exception is thrown in any of the servers. We want a system that checks for appearance of specific words, "Exception", "Disk Full" etc. in the logs of any of the servers. How would you design this system?)
 
 ## <a name='architecture'>Architectures :</a>
 
