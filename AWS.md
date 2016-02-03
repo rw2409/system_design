@@ -92,6 +92,41 @@ Secondary index consists of attributes that are projected, or copied, from the t
   * A primary benefit of using a dead letter queue is the ability to sideline and isolate the unsuccessfully processed messages. 
 
 #Kinesis
+##Use cases
+Real-time aggregation of data followed by loading aggregated data into DW/Map-Reduce cluster
+  * log data
+  * social media/market data feeds
+  * click stream
+
+Kinesis ensures durability and elasticity
+ * near realtime 1s available after data intake
+ * no data loss prior to expiration
+ * multiple data consumers supported
+
+##Concepts
+* Kinesis Stream
+  * ordered sequence of data records
+  * each record in the stream has a sequence number
+  * composed of one or more shards, each of which provides a fixed unit of capacity
+  * add/remove shards to increase/decrease with capacity
+
+* Shards
+  * capacity: 5 reads or 2 MB per second
+  * 1000 writes or 1 MB per second
+
+* Data Record
+  * partition key: byte(256), MD5 hash(parition key)->128 bit integer to map to shards
+  * sequence number: each data record has a unique sequence number, sequence number for the same parition key generally increase over time
+    *The sequence number is assigned by Streams after writing to the stream with client.putRecords or client.putRecord
+  * A data blob (Immutable) can be up to 1MB
+
+* Retention Period
+  * default 24 hours, max 7 days
+
+* Producers: Data generator
+* Consumers: Kinesis Stream applications
+	* Each consumer must have unique name that is scoped to the AWS account and region
+	* The name is used to create a DynamoDB table to store application state
 
 #SWF
 
