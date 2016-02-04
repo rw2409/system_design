@@ -160,3 +160,8 @@ Always keep in mind: trading off about C(Consistency) A (Availability) and P (Pa
 ##Cassandra/Hbase?
 
 #Kinesis difference & Kafka & Storm
+
+#TODO:
+##Kinesis code read
+##SWF, how to define workflow, SWF code read
+##Spring MVC
