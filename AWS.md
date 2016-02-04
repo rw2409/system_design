@@ -130,5 +130,23 @@ Kinesis ensures durability and elasticity
 
 #Redshift
 
-#Dynamo DB/Redis/Cassandra
+#Distributed Key-value store options: Dynamo DB/Redis/Cassandra
+Always keep in mind: trading off about C(Consistency) A (Availability) and P (Partition Tolerance)
+##Dynamo DB
+* Pros: hosted, seamingless scale, no need to worry about consistency, availability, scalability
+* Cons: expensive, dependency on AWS
+##Build high scalable key-value storage with Shareded Redis Cluster
+1. Single Node to load everything in RAM
+    * -Issue1: No redundancy, single point of failure
+    * -Issue2: Not able to host all data
+2. Issue1: Master-Slave replica
+    * +both master/slave can do non-blocking sync-up, keep serving traffic while syncing
+    * -Potential problem of consistency when network partition happens
+    * ?Any way to recover/promote a slave
+3. Shard/Partition the data to different Redis clusters
+    * + In theory can support infinite data
+    * + Need to implement consistant hashing to reduce re-map effort (Details? in implementing consistant hashing: what hash function?)
+    * 2015 ready: Redis Cluster Solution
+##Cassandra/Hbase?
+
 #Kinesis difference & Kafka & Storm
