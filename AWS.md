@@ -140,11 +140,15 @@ Kinesis ensures durability and elasticity
 * E.G, Secondary indexes and efficient single-row data manipulation operations are disabled
 * Non implemented features: indexes, foreign keys, constraints, triggers, sequences etc
 
-# Distributed Key-value store options: Dynamo DB/Redis/Cassandra
-Always keep in mind: trading off about C(Consistency) A (Availability) and P (Partition Tolerance)
+# Distributed Key-value store options: Dynamo DB/Redis/HBase/Cassandra
+**CAP Theroem** : trading off about C(Consistency) A (Availability) and P (Partition Tolerance)
+When network parition happens:
+CP: CP system will continue running with full consistency; it will sacrifice A by shutting down other (non-quorum) nodes entirely
+
 ## Dynamo DB
 * Pros: hosted, seamingless scale, no need to worry about consistency, availability, scalability
 * Cons: expensive, dependency on AWS
+
 ## Build high scalable key-value storage with Shareded Redis Cluster
 1. Single Node to load everything in RAM
     * -Issue1: No redundancy, single point of failure
@@ -157,8 +161,76 @@ Always keep in mind: trading off about C(Consistency) A (Availability) and P (Pa
     * + In theory can support infinite data
     * + Need to implement consistant hashing to reduce re-map effort (Details? in implementing consistant hashing: what hash function?)
     * 2015 ready: Redis Cluster Solution
-##Cassandra/Hbase?
 
+## Hbase: Big table on HDFS(GFS)
+  * Non-Relational database run on top of HDFS(Hadoop Distributed File system)
+  * Implementation of BigTable including bloom filter, compression, in-memory operation
+  * Non-Structured, column database
+  * Good for storing large quantities of sparse data (find 50 max in a billion records)
+  * Tables in Hbase can be used as input/output of MapReduce jobs
+  * CP system in CAP
+
+### Original Idea: BigTable:
+* Based on GFS (Google File System)
+
+### Use examples:
+1. Facebook messaging system
+2. Big Table: Google Reader, Maps, SearchHistory etc
+
+### [Data Model](http://hbase.apache.org/book.html#conceptual.view)
+[Good analogy](http://jimbojw.com/wiki/index.php?title=Understanding_Hbase_and_BigTable)
+1. Table: Sorted Map
+  1. Row Key : only search index in the table, usually reversed for domain name to keep locality
+  2. Support single index, range by timestamp, or scan
+  3. Sorted by byte array values
+2. Column family: Multi-dimensional value Map
+  1. Column families are specified when created, cannot be modified, Expensive to add new column families
+  2. Each Column family may have any number of columns, denoted by a column "qualifier" or "label".
+  3. When asking HBase/BigTable for data, you must provide the full column name in the form "<family>:<qualifier>". 
+  4. Each row may have any number of different columns, there's no built-in way to query for all columns in all rows.
+3. Timestamp:
+  * Last dimension represented in HBase/BigTable is time. 
+  * All data is versioned either using an integer timestamp (seconds since the epoch), or another integer of your choice.
+4. Cell: a cell is identified by its rowkey/column pair
+Each column family may have its own rules regarding how many versions of a given cell to keep. In most cases, applications will simply ask for a given cell's data, without specifying a timestamp. HBase/BigTable will return the most recent version (the one with the highest timestamp) since it stores these in reverse chronological order. 
+
+### [Physical Model](http://hbase.apache.org/book.html#regions.arch)
+1. Region: a continous range of data in table, smallest distributed/load balancing unit
+  * A table starts with one region and grow to split
+  * Smallest store (HRegions) and load balancing unit: differnt HRegions could be stored on different HRegionServers, but the same HRegion will not split
+2. Store: smallest store unit, one HRegion have 1+ Stores, each store contains all data of a column family
+  * Each Store is one memStore and 0 or more Store File
+  * Store file is HFile(B Tree) on HDFS
+
+3. HRegionServer = HBase RegionServer
+  * One physical node runs **exactly one** HRegionServer
+  * One HRegionServer manages **mulitple** HRegions
+  * One HRegion instance has HLog and multiple Store
+
+4. HLog: Each HRegionServer manages one HLog, logs from differnt HRegion are commingled,  WAL(Write Ahead Logging) before writing
+  * Single HLog good for write
+  * Whe failover, need to split logs for differnt HRegions
+
+### W/R operation
+  1. Write Sequence:
+    1. Connect to HRegionServer to submit write
+    2. Write Ahead Log (WAL) and memstore
+    3. When memstore reaches certain threshold, HRegionServer will flashcache into StoreFile
+    4. Flash file may grow and merge and finally HRegion will split to regions.
+    5. HMaster will assign new HRegion Server
+  2. Read operation:
+    1. first check memStore
+    2. if not in check StoreFile
+
+### HMaster:
+  * One single master of a HBase Cluster
+  * HMaster will load balancing between Region Server
+  * HMaster never servers outside traffic, only HRegionServer answers
+  * When HRegion is down, HMaster will notice by ZooKeeper and process corresponding HLog
+  * When HMaster is down, HRegion can still work but MetaData cannot be udpated.
+  * [Master/Slave Model but not every request needs HMaster](https://blogs.apache.org/hbase/entry/hbase_who_needs_a_master)
+
+##Cassandra
 #Kinesis difference & Kafka & Storm
 
 #TODO:
