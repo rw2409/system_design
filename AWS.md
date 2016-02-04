@@ -241,6 +241,7 @@ Each column family may have its own rules regarding how many versions of a given
 
 #Kinesis difference & Kafka & Storm
 
+#What is good for Redis/HBase/Cassandra/Dynamo?
 #TODO:
 ##Kinesis code read
 ##SWF, how to define workflow, SWF code read
