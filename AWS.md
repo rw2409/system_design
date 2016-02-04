@@ -129,13 +129,23 @@ Kinesis ensures durability and elasticity
 	* The name is used to create a DynamoDB table to store application state
 
 #Redshift
+## High level architecture: Cluster of nodes
+* Leader node: receives queries from client, parse queries, develops query execution plans
+* Leader node then coordinates the parallel execution of these plans with the compute nodes, aggregates the intermediate results from these nodes, and finally returns the results
+* Compute nodes execute the query execution plans and transmit data among themselves to serve these queries.
 
-#Distributed Key-value store options: Dynamo DB/Redis/Cassandra
+## DB type: PostgreSQL
+* online analytic processing (OLAP) and  business intelligence (BI) oriented
+* E.G, online transaction processing (OLTP) applications typically store data in rows, Amazon Redshift stores data in columns, using specialized data compression encodings for optimal memory usage and disk I/O. 
+* E.G, Secondary indexes and efficient single-row data manipulation operations are disabled
+* Non implemented features: indexes, foreign keys, constraints, triggers, sequences etc
+
+# Distributed Key-value store options: Dynamo DB/Redis/Cassandra
 Always keep in mind: trading off about C(Consistency) A (Availability) and P (Partition Tolerance)
-##Dynamo DB
+## Dynamo DB
 * Pros: hosted, seamingless scale, no need to worry about consistency, availability, scalability
 * Cons: expensive, dependency on AWS
-##Build high scalable key-value storage with Shareded Redis Cluster
+## Build high scalable key-value storage with Shareded Redis Cluster
 1. Single Node to load everything in RAM
     * -Issue1: No redundancy, single point of failure
     * -Issue2: Not able to host all data
