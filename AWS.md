@@ -127,9 +127,8 @@ Kinesis ensures durability and elasticity
 * Consumers: Kinesis Stream applications
 	* Each consumer must have unique name that is scoped to the AWS account and region
 	* The name is used to create a DynamoDB table to store application state
-#SWF
+
 #Redshift
 
 #Dynamo DB/Redis/Cassandra
-#Kinesis difference & Kafka
-#SWF & Storm
+#Kinesis difference & Kafka & Storm
