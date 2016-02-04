@@ -230,7 +230,15 @@ Each column family may have its own rules regarding how many versions of a given
   * When HMaster is down, HRegion can still work but MetaData cannot be udpated.
   * [Master/Slave Model but not every request needs HMaster](https://blogs.apache.org/hbase/entry/hbase_who_needs_a_master)
 
-##Cassandra
+##Cassandra?
+##[About meta data](http://blog.csdn.net/liuaigui/article/details/6749188)
+
+#Open source projects:
+* Thrift: Thrift is an interface definition language and binary communication protocol that is used to define and create services for numerous languages.
+* Hive(SQL): BI Reporting SQL
+* Pig: ETL Tools (Data flow)
+* ZooKeeper: Scheduling/Coordinating between MapReduce jobs
+
 #Kinesis difference & Kafka & Storm
 
 #TODO:
