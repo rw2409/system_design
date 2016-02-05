@@ -260,6 +260,19 @@ Each column family may have its own rules regarding how many versions of a given
 
 ##[About meta data](http://blog.csdn.net/liuaigui/article/details/6749188)
 
+# Storm
+distributed, real-time stream processing framework
+## Storm Model
+1. Topologies: A connected group of spout/bolt connected by streams
+2. Tuple: data being processed in streams
+3. Streams: An infinite stream of tuple data
+4. Spouts
+  * source of data
+  * could be reliable or not-reliable(retry if storm processing failed)
+5. Bolts
+  * Accepts mulitple input streams and produces multiple output streams
+
+
 #Open source projects:
 * Thrift: Thrift is an interface definition language and binary communication protocol that is used to define and create services for numerous languages.
 * Hive(SQL): BI Reporting SQL
