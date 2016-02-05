@@ -272,16 +272,26 @@ distributed, real-time stream processing framework
 5. Bolts
   * Accepts mulitple input streams and produces multiple output streams
 
+# Kinesis difference & Kafka & Storm
+## Storm:
+Multi-procedure framework for real-time stream processing
+Storm can be connected with multiple Kinesis/Kafka/Redis queues
+## Kinesis/Kafka:Single procedure oriented stream queue
+1. Kafka:
+  * Performance: optimized performance
+  * Maintainance: paritioning, replication, configuration etc
+2. Kinesis:
+  * Performance not as good as Kafka
+  * Easy operation
+## SQS: No ordering queue, not ordered, does not support group (will not aggregate)
+
+#TODO:
+##Kinesis code read
+##SWF, how to define workflow, SWF code read
+##Spring MVC
 
 #Open source projects:
 * Thrift: Thrift is an interface definition language and binary communication protocol that is used to define and create services for numerous languages.
 * Hive(SQL): BI Reporting SQL
 * Pig: ETL Tools (Data flow)
 * ZooKeeper: Scheduling/Coordinating between MapReduce jobs
-
-#Kinesis difference & Kafka & Storm
-
-#TODO:
-##Kinesis code read
-##SWF, how to define workflow, SWF code read
-##Spring MVC
