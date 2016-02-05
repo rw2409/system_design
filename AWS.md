@@ -230,7 +230,34 @@ Each column family may have its own rules regarding how many versions of a given
   * When HMaster is down, HRegion can still work but MetaData cannot be udpated.
   * [Master/Slave Model but not every request needs HMaster](https://blogs.apache.org/hbase/entry/hbase_who_needs_a_master)
 
-##Cassandra?
+# Cassandra
+##Data Model
+* Similar as BigTable, wide column store Map<Key, Map<Key2, Value>>
+* Each row can have at most 2 Billion columns
+* ColumnFaimily(Hbase) => Table(Cassandra)
+* RowKey, ColumKey => Primary Key
+
+##HardWare Model
+* Does not need HDFS/GFS like HBase, local storage
+* Logging based, leveraging Memtable and CommitLog
+
+##Distributed Model
+* Like Dynamo using consistant hashing
+* No master node
+* Peer nodes communicates with Gossip protocle (P2P)
+* Each peer finds which node to take the request from client and redirect request to the node
+* Allows flexible configuration for CAP. Each data has N nodes copy, and each read will read R and each write will write to W nodes
+  * when W+R > N, read must have last time read, strong consistency
+  * when W+R <= N, eventual consistency
+  * when W = N/R=N, read/write fail when one node is down, losing A 
+
+##Cassandra Versus HBase
+* Hbase needs to run on HDFS, needs ZooKeeper to corrdinate, Cassandra is simpler for operation
+* Cassandra has configurable read/write consistency, HBase is always strong consistency
+* Cassandra does not have MasterNode; Hbase has one node for reach region, it needs failover before region transferred. Master node also has single node, so it takes time to recover, there are limited single point of failure
+* Cassandra leveraging consistent hashing (probability balancing); Hbase leverages the master node to load balancing (therefore cassandra has good linear scalability)
+* Cassandra supports CQL.
+
 ##[About meta data](http://blog.csdn.net/liuaigui/article/details/6749188)
 
 #Open source projects:
@@ -241,7 +268,6 @@ Each column family may have its own rules regarding how many versions of a given
 
 #Kinesis difference & Kafka & Storm
 
-#What is good for Redis/HBase/Cassandra/Dynamo?
 #TODO:
 ##Kinesis code read
 ##SWF, how to define workflow, SWF code read
