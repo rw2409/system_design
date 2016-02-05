@@ -260,6 +260,35 @@ Each column family may have its own rules regarding how many versions of a given
 
 ##[About meta data](http://blog.csdn.net/liuaigui/article/details/6749188)
 
+#Kafka:
+##Concepts:
+* Broker: Each Kafka node
+* Topic: one queue of messages (like QueueName or StreamName), physically different topic stored on different nodes.
+* Parition: physical concept, one topic may have multiple partition, each parition is a folder 
+* Producer: publishes messages to broker
+* Consumer: read messages from broker
+* Consumer Group: one consumer belongs to one consumer group
+
+## Toplogical:
+* producers --(push messages)--> brokers <--(pull messages)-- consumers, horizontal scaling
+* ZooKeeper elect leader and rebalance
+* Each log file is a log entrie list, each logEntry contains offeset into disk of data payLoad, each message will be append to disk (very high performance)
+* Never actively deletes old messages when dequeued, archiving using date/size strategy
+
+## Write/Read Sequence
+* Publisher publishes message (paritionKey + payLoad)
+* Producer uses the key and parition mechanism to determine which parition to send to
+* Each message will be consumed by one consumer in each consumer group, but multiple consumer group can receive the same message(single or brodcast)
+* Consumer will need to remember its read offset 
+* Each parition has master/slave nodes, master answers request/responses and slaves syncs from master data, once master is down, slave will promote to master. Each machine can be master for certain parition and slave for other partitions.
+
+## Delivery behavior
+* At least one delivery
+* Async producer-> at most one delivery
+* Work with external system to get extactly once delivery(leveraging offset)
+* Kafka ensures order sequence only inside **each partition**.
+* For N copy topic, there could be N-1 nodes down and it's still available
+
 # Storm
 distributed, real-time stream processing framework
 ## Storm Model
