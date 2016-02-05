@@ -305,7 +305,7 @@ distributed, real-time stream processing framework
 5. Bolts
   * Accepts mulitple input streams and produces multiple output streams
 
-## Storm VS. Kinesis VS. Kafka VS.
+## Storm VS. Kinesis VS. Kafka VS. SQS
 ### Storm:
 Multi-procedure framework for real-time stream processing
 Storm can be connected with multiple Kinesis/Kafka/Redis queues
