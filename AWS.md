@@ -322,6 +322,15 @@ Storm can be connected with multiple Kinesis/Kafka/Redis queues
 
 #TODO:
 ##Kinesis code read
+Kinesis default shard# = 2;
+Check Muninn/Akasha traffic
+
+Callable/Future<Void>, A function return type Void (should always return null) simply tells client not to expect return value, 
+Use spring to find all Beans that are annotated/implemented with certain annotation or classes.
+Find all annotations with given class and use it to map to downstream
+//keep checking kinesis behavior.
+
+
 ##SWF and SWF code read, how to define workflow
 ##Spring MVC
 
