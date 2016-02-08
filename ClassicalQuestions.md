@@ -1,6 +1,7 @@
 #Online behavior
 * Design amazon's last viewed product page (can goes back to last 100)
 * Design amazon item recommendation system.
+* Design Airbnb recommendation system.
 
 #News Feeds/Social Network
 * Design a [picture sharing website](http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html). How will you store thumbnails, photos? Usage of CDNS? caching at various layers etc.
