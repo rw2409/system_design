@@ -1,18 +1,18 @@
 #System learning case:
 ## DocumentStore and Reporting
 1. Data is saved to Document Store (Key-Value, DynamoDB).
-* Optimistic Locking
-* Send SNS event which goes into a SQS queue (order is not guaranteed, therefore downstream sequencing behavior on kinesis does not solve all ordering problems)
+  * Optimistic Locking
+  * Send SNS event which goes into a SQS queue (order is not guaranteed, therefore downstream sequencing behavior on kinesis does not solve all ordering problems)
 
 2. Mapping on start-up cache all these mapping configs
-* Schema to mappings: multi-map
-* OutputModel to destinations: multi-map
-* OuptputModel to outputFields: map
-* Implementation:
-  * Use spring to find all Beans that are annotated/implemented with certain annotation or classes.
-    * E.G: on start-up find all classes annotated with Muninn Mapping annotation therefore find all source schemas, destinations and output model classes.
-  * Reflection can find all annotations on given class.
-    * E.G: find all destination types for given Muninn Model classes
+  * Schema to mappings: multi-map
+  * OutputModel to destinations: multi-map
+  * OuptputModel to outputFields: map
+  * Implementation:
+    * Use spring to find all Beans that are annotated/implemented with certain annotation or classes.
+      * E.G: on start-up find all classes annotated with Muninn Mapping annotation therefore find all source schemas, destinations and output model classes.
+    * Reflection can find all annotations on given class.
+      * E.G: find all destination types for given Muninn Model classes
 
 3. Mapping and sending to Kinesis Stream
   1. dequeue SQS messages and deserialize the message to retrieve document id.
@@ -57,7 +57,7 @@
 	* Kinesis QueueSize
 
 6. Notes
-    * Kinesis delete messages automatically, no need for client to delete them.
+  * Kinesis delete messages automatically, no need for client to delete them.
 	* KCL uses DynamoDB to track each worker thread checkpoint into the stream, not related to our customization completion time check.
 	* There is one thread on each host for each KinesisConsumer (model+destination), are different destination threads for the same model accessing the same shard of the model stream? However if shard number is smaller than total nodes, there will be some idle threads not accessing the shard. There is contention on polling messages from the stream of the same shard?
 
