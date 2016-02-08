@@ -320,21 +320,47 @@ Storm can be connected with multiple Kinesis/Kafka/Redis queues
   * Stream is good for real-time analysis or decision making
   * SQS messaging is good for workflow kickoff or event drive async process
 
-#TODO:
-##Kinesis code read
-Kinesis default shard# = 2;
-Check Muninn/Akasha traffic
+# Workflow/Batch 
+##Amazon SWF
+### Concepts:
+* ActivitiesWorker: 
+  * supports a set of activities; perform a particular task.
+  * independent of each other and can often be used by different workflows
 
-Callable/Future<Void>, A function return type Void (should always return null) simply tells client not to expect return value, 
-Use spring to find all Beans that are annotated/implemented with certain annotation or classes.
-Find all annotations with given class and use it to map to downstream
-//keep checking kinesis behavior.
+* WorkflowWorker: orchestrates the activities' execution and manages data flow. It is a programmatic realization of a workflow topology a flow chart that defines when the various activities execute, whether they execute sequentially or concurrently, and so on.
 
+* WorkflowStarter: starts a workflow instance, called an execution, and can interact with it during execution.
 
-##SWF and SWF code read, how to define workflow
-##Spring MVC
+### SWF Benefits:
+* Runs multiple processes that can distribute across multiple systems, data centers or even operating systems.
+* Activities are executed asynchronously instead of synchronously/locally.
+* WorkflowWorkers interact with Activity Workers by calling Http requests.
+* Workflow Starter interacts with Workflow Workers by calling Http requests.
 
-#Open Source Overview:
+### Programing Model
+#### Activities
+* Activity Interface: Define **interface** annotated with @Activities(version) and @ActivityRegistrationOptions()
+* Activity Implementation: implement the activity interface defined above
+* ActivityWorker: manages interaction between activity methods and Amazon SWF
+* ActivityHost application register and starts activity worker
+
+#### Workflows
+* Workflow interface: Define **interface** annotated with @Workflow and @WorkflowRegistrationOptions and its workflow entry point function annotated with @Execute annotation.
+* Workflow implementation:
+  * Implements the workflow topology
+  * Interacting with generated *ActivitiesClientImpl, which is a proxy to implementation executed on a different thread, process etc
+  * Use Promose<T> as return type of activityClientImpl function invokes, use Promose<Void> when no return value
+  * If want certain tasks performed locally instead of remotely on activities, a local method with @Asynchronous annotaion does the trick with Promise<T>. (asychronous method should be only light weight functions, heavy ones should be done by activities)
+  * Parallel can be done by two parallel Promise<T> values used for merge point.
+
+#### WorkflowWorkers and ActivityWorkers
+* Could reside on the same/different process
+* Instantiate ActivityWorker/WorkflowWorker using corresponding workflow/activity implementation.
+
+#### Workflow Starter
+* Create Amazon SWF client and instantiate generated WorkflowClient.
+
+#Open Source CheckList:
 * HHVM: PHP compiler
 * Thrift: Thrift is an interface definition language and binary communication protocol that is used to define and create services for numerous languages.
 * Hive(SQL): BI Reporting SQL
