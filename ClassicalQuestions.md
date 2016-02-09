@@ -15,6 +15,7 @@
 
 #Stream processing
 * (very common:) top 'n' or most frequent items of a running stream of data
+  * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/TopOrMaxFromStream.md)
 * Design a logging system
  (For web applications, it is common to have a large number of servers running the same application, with a load balancer in front to distribute the incoming requests. In this scenario, we want to check and alarm in case an exception is thrown in any of the servers. We want a system that checks for appearance of specific words, "Exception", "Disk Full" etc. in the logs of any of the servers. How would you design this system?)
 * Design election commission architecture :
