@@ -76,9 +76,25 @@ These talks should give you decent ammo to start formulating some architectures 
 
 1. Avoid Single point of failure: using redundancy etc
   * hosts in 3+ multiple data centers to escape from data center outage
-2. Drop synchronous dependency on non-critical process: using async
-  * User registration on emailing validation
-  * RoutingDocumentRecommendation publishing
+2. Using messaging/Stream for following cases
+  1. Drop synchronous dependency on non-critical process: using async
+    * E.G.1: User registration on emailing/cellphone validation
+    * E.G.2: RoutingDocumentRecommendation publishing
+    * E.G.3: Ordering system sends event/document for order placed instead of directly calling inventory management services
+    * Improve **throughput** and decouple dependency
+    * Decoupling systems, better **availability**, can order even inventory system is down.
+  
+  2. Peak/Burst requests
+    * E.G.1: RedPocket, Promotion etc which input request rate is much bigger than downstream can handle.
+    * Improve throughput and availability
+
+  3. Logging/Metrics data processing
+    * E.G.: Pmet system (MetricsAgent + Pmet + Igraph/Monitor)
+
+  4. Communication system (basic, small scale)
+    * p2p or group-chat
+    * Each session/chat is a message queue.
+    * Queue could be pre-created and then allocated while start conversation.
 3. Optimistic locking for lock-free
   * Using version number in DynamoDB
 4. Build itempotent write behavior.
