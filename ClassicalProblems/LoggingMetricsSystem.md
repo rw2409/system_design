@@ -10,7 +10,8 @@ Four tiers split:
 * use Streaming/Messaging (Kafka, Kinesis) queue based async data publishing to connect tier 1 and tier 2.
 * Each layer can use horizontal scaling with increasing number of nodes
 
-## log/Metrics publishing layer: light weight publisher to publish log/metrics entry
+## log/Metrics publishing layer 
+a light weight publisher to publish log/metrics entry
     {
         key : ServiceName,
         timeStamp: currentTime
@@ -20,10 +21,11 @@ Four tiers split:
             logEntryValue: "logEntry"
         }
     }
+    
   * There should be a local agent that constantly tailing/grepping logs for the key words and publishes messages.
   * The local agent can also generate system metrics such as CPU Usage, disk Usage, service metrics etc and publish to the queue.
   * Potentially, the log file is too big to transfer over the stream.
-  * Local agent such as scripts, Logstash
+  * Local agent such as scripts, Logstash, or consumable applications/agents
 
 ## log consuming layer
 this part should dequeue messages, and publishes to certain consumers, for different type of payLoad, emit different data events or actions.
