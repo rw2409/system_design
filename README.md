@@ -26,8 +26,7 @@ Feel free to go through other lectures if needed.
 These talks should give you decent ammo to start formulating some architectures yourself. 
 
 ## <a name 'basics'>Basics</a>
-Here are the basic concepts, knowledge to start with.
-
+### Basic concepts and knowledge to start with.
 1. Operating system basics
   * file system
   * virtual memory
@@ -73,7 +72,7 @@ Here are the basic concepts, knowledge to start with.
   * Messaging topology such as Storm
   * Async workflow such as SWF
 
-Common Best practices:
+### Common Best practices to follow
 
 1. Avoid Single point of failure: using redundancy etc
   * hosts in 3+ multiple data centers to escape from data center outage
@@ -85,6 +84,7 @@ Common Best practices:
 4. Build itempotent write behavior.
   * Using requestID such as FCInventoryService
   * Using lastProcessedTimeStamp or sequence number to ignore delayed events.
+
 
 ## <a name='myapproach'>Steps how I approach the system design questions in interviews</a>
 These are the steps I go through in solving design problems and overall design practices.
