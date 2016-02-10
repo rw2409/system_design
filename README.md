@@ -49,27 +49,25 @@ Should know the TCP/IP stack, basics of how internet, HTTP, TCP/IP work at the m
 * The best way to prepare for such questions is do mock interviews, pick any topic (given below) try to comeup with a design and then go and see how and why it is designed in that manner. There is absolutely no alternative to practice!! Whiteboarding a system design question is similar to actually writing code and testing it! Just reading will only take you so far.
 
 ## <a name='myapproach'>Steps how I approach the system design questions in interviews</a>
+These are the steps I go through in solving design problems and overall design practices.
 
-These are the steps I go through mentally in the interviews, followed by actual interview experiences:
+These are the steps I go through in solving design problems and overall design practices.
 
-* a) **Be absolutely sure you understand the problem being asked**, clarify on the onset rather than assuming anything 
-* b) **Use-cases**. This is critical, you MUST know what is the system going to be used for, what is the scale it is going to be used for. Also constraints like requests per second, requests types, data written per second, data read per second.
-* c) Solve the problem for a **very small set**, say 100 users. This will broadly help you figure out the data structures, components, abstract design of the overall model.
-* d) Write down the various components figured out so far and how will they interact with each other.
-* e)  As a rule of thumb remember atleast these :
- * 1.processing and servers
- * 2.storage 
- * 3.caching 
- * 4.concurrency and communication
- * 5.security 
- * 6.load balancing and proxy 
- * 7.CDN 
- * 8. Monetization: if relevant, how will you monetize?
- eg . What kind of DB (will mysql do ? or nosql fits btr? ), do you need caching (almost always !) and how much, is security a prime concern? 
-* f) **Special cases** for the question asked. Eg say designing a system for storing thumbnails, will a file system suffice? What if you have to scale for facebook or google? Will a nosql based db work?
-* g) After I have my components in place, what I generally try to do is look for minor optimization in various places according to the usecases, various tradeoffs that will help in better scaling in 99% cases.
-* h) [Scaling out or up]  (http://highscalability.com/blog/2014/5/12/4-architecture-issues-when-scaling-web-applications-bottlene.html)
-* i) Check with the interviewer is there any other special case he is looking to solve? Also it really helps if you know about the company you are interviewing with, what its architecture is, what will the interviewer have more interest in based on the company and what he works on? 
+1. **Understand the problem and clarifying requirements**
+Never assume anything, should always clarify with business/interviewer
+  * Ask for **use-cases** when not understand the system, try to clarify a use-case how the system is used for.
+  * Aks for **limitations**: such as RPS, Throughput, security, cost, dependency, resource etc. 
+
+2. Solve the problem for a **small** scale of users/items/use-cases. This will broadly help you figure out the high level **end-to-end components**.
+  * Write down the various components and how each component **interact** with each other.
+
+3. Adjust the solution to solve the problem at **full scale**. Typically this involves
+  * **De-coupling** interactions between components (async, messaging etc)
+  * **Extract** a new layer/component from a existing component as a new abstraction layer
+  * Both of the above makes it easier to scale for each different layer using different approach.
+  * Try to name concret solutions (AWS, OpenSource etc) and not to re-invent the wheel.
+  * Certain component may require special best practice to build it in scalable/extensible ways.
+  * Last two points above requires knowledge and experience.
 
 ## <a name='architecture'>Architectures :</a>
 
