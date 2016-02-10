@@ -7,13 +7,11 @@ If you are already familiar with the basics (given below) it will take you ~2 mo
 
 ## Index
 - [ ] [Where to start from?](#start)
-- [ ] [basics](#basics)
-- [ ] [How to answer in interviews](#howtoans)
+- [ ] [Basics](#basics)
 - [ ] [Steps how I approach the system design questions in interviews](#myapproach)
 - [ ] [Common Design questions](https://github.com/rw2409/system_design/blob/master/ClassicalQuestions)
 - [ ] [architecture](#architecture)
 - [ ] [company engineering blog links](#blog)
-- [ ] [Low on time ?](#tldr)
 
 ## <a name='start'>Where to start from?</a>
 
@@ -88,17 +86,7 @@ Common Best practices:
   * Using requestID such as FCInventoryService
   * Using lastProcessedTimeStamp or sequence number to ignore delayed events.
 
-## <a name='howtoans'> How to answer in interviews </a>
-
-* I found [hiredintech](http://www.hiredintech.com/system-design) videos an excellent place to start with. The way how to approach a design question as given in the link is really useful. It goes into how we start with clearing the use-cases of the system, then thinking in abstract manner of the various component and the interactions. Think about the bottlenecks of the system and what is more critical for your system (eg latency vs reliability vs uptime etc) Address those giving the tradeoff of your appraoch. 
-
-* [system design in crack the coding interview](http://www.flipkart.com/cracking-coding-interview-150-programming-questions-solutions-english-5th/p/itmdz4pvzbhcv6uv) :good approach on how to begin attacking a problem by first solving for a small usecase then expanding the system.
-
-* The best way to prepare for such questions is do mock interviews, pick any topic (given below) try to comeup with a design and then go and see how and why it is designed in that manner. There is absolutely no alternative to practice!! Whiteboarding a system design question is similar to actually writing code and testing it! Just reading will only take you so far.
-
 ## <a name='myapproach'>Steps how I approach the system design questions in interviews</a>
-These are the steps I go through in solving design problems and overall design practices.
-
 These are the steps I go through in solving design problems and overall design practices.
 
 1. **Understand the problem and clarifying requirements**
@@ -120,7 +108,6 @@ Never assume anything, should always clarify with business/interviewer
 ## <a name='architecture'>Architectures :</a>
 
 Personally I looked into the following architectures:
-
 * [Basics of google search](http://infolab.stanford.edu/~backrub/google.html)
 * Basics of messaging frameworks like Kafka , queuing architectures like rabbitmq.
 * Broad overview and advantages of Redis , mongodb , cassandra. 
@@ -133,12 +120,7 @@ Personally I looked into the following architectures:
 * [facebook haystack needle architecture](https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf)
 * [youtube architecture and optimizations for video](https://www.youtube.com/watch?v=ZW5_eEKEC28)
 
-
-
-
 ## <a name='blog'>company engineering blog links </a>
-
-courtesy [checkcheckzz](https://github.com/checkcheckzz/system-design-interview#toc)
 
 Depending on where you are interviewing, go through the company blog . VERY USEFUL IN INTERVIEWS! It really helps if you have an idea of the architecture, as the questions asked will generally be of that domain and your prior knowledge will help out here.
 
@@ -172,22 +154,6 @@ Depending on where you are interviewing, go through the company blog . VERY USEF
 * [Yammer Engineering](http://eng.yammer.com/blog/)
 * [Yelp Engineering Blog](http://engineeringblog.yelp.com/)
 
-
-## <a name='tldr'>Low on time ?</a>
-
-**I would HIGHLY recommend you dont take a shortcut unless you have a week or so for an interview. System design is best learnt by practicing, shortcuts might help you in the short term, but would recommend coming back to this link for an indepth understanding after the interview**
-
-* a)Go through cs76 and udacity's links given above for scaling systems. 
-* b)Go through the engineering blog of the company you are interviewing in (or if its a startup go through the link of the company closest to yours)
-* c)See this talk: http://www.hiredintech.com/system-design/the-system-design-process/ and develop a process for how to answer such questions .
-* d) remember these terms, just roll over them in your interview in your mind, and if relevant mention it in the interview 
- 1. processing and servers
- 2. storage 
- 3. caching 
- 4. concurrency and communication
- 5. security 
- 6. load balancing and proxy 
- 7. CDN 
- 8. Monetization
-
-Best of luck :+1:, feel free to send pull requests to add more content to this git! Will be updating it from time to time.
+* Go through cs76 and udacity's links given above for scaling systems. 
+* See this talk: http://www.hiredintech.com/system-design/the-system-design-process/ and develop a process for how to answer such questions .
+* I found [hiredintech](http://www.hiredintech.com/system-design) videos an excellent place to start with. The way how to approach a design question as given in the link is really useful. It goes into how we start with clearing the use-cases of the system, then thinking in abstract manner of the various component and the interactions. Think about the bottlenecks of the system and what is more critical for your system (eg latency vs reliability vs uptime etc) Address those giving the tradeoff of your appraoch. 
