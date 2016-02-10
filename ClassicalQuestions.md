@@ -17,7 +17,7 @@
 * (very common:) top 'n' or most frequent items of a running stream of data
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/TopOrMaxFromStream.md)
 * Design a logging system
-* Design a fraud/security risk behavior detection system
+  * Design a fraud/security risk behavior detection system
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/LoggingMetricsSystem.md)
 * Design election commission architecture :
  Let's say we work with the Election Commission. On Counting day, we want to collate the votes received at the lakhs of voting booths all over the country. Each booth has a voting machine, which, when connected to the network, returns an array of the form {[party_id, num_votes],[party_id_2, num_votes_2],...}. We want to collect these and get the current scores in real time. The report we need continuously is how many seats is each party leading in. Please design a system for this.
