@@ -28,17 +28,65 @@ Feel free to go through other lectures if needed.
 These talks should give you decent ammo to start formulating some architectures yourself. 
 
 ## <a name 'basics'>Basics</a>
+Here are the basic concepts, knowledge to start with.
 
-But before you begin, here are some topics(in no particular order) which in my opinion you should have a decent idea of before proceeding.
+1. Operating system basics
+  * file system
+  * virtual memory
+  * copy-on-write
+  * memory swap
+  * paging
+  * instruction execution
 
-1. Operating system basics: how a file system, virtual memory, paging, instruction execution cycle etc work
-(For starters silbershatz should be enough, if you already have decent knowledge try stallings book on OS)
-2. Networking basics: 
-Should know the TCP/IP stack, basics of how internet, HTTP, TCP/IP work at the minimum. cs75 on youtube (1st lecture) should give a broad overview. I personally love [networking-a top down approach](http://www.amazon.com/Computer-Networking-Top-Down-Approach-Edition/dp/0132856204).
-3. Concurrency basics: threads, processes, threading in the language you know. Locks , mutex etc. 
-4. DB basics: types of DB's (sql vs no sql etc ),hashing and indexing, EAV based dbs, Sharding, caching for dbs, master slave etc
-5. A basic idea of how a basic web architecture is: say load balancers, proxy, servers, db servers, caching servers, precompute , logging big data etc. Just know broadly what is each layer for.  
-6. very basic summary of what the [CAP therem](http://robertgreiner.com/2014/08/cap-theorem-revisited/) is (Have never been asked about the theorem itself, but knowing it will help you in designing large scale systems. 
+2. Networking basics
+  * TCP/IP stack
+  * HTTP
+  * DNS
+  * cs75 on youtube (1st lecture) should give a broad overview
+
+3. Concurrency basics
+  * Threads/Processes
+  * Locks/Mutex/Semaphore differences
+  * How to use multi-thread in Java? (Executor/Thread/Runnable/Callable)
+  * Future<>/Volatile?
+  
+4. Storage basics
+  * sql vs no sql differences
+  * typical sql solutions
+  * typical nosql solutions
+  * DB indexing/sharding
+  * DB duplication of master-slave/peers
+  * Caching
+
+5. Web Service basics:
+  * Restful/SOAP(RPC)
+  * load balancers,
+  * Cookies
+  * Precompute/Caching/CDN
+  * Security & authetication
+
+6. Distributed architecturing
+  * [CAP therem](http://robertgreiner.com/2014/08/cap-theorem-revisited/)
+  * Consistant hashing
+  * Zoo keeping?
+
+7. Async processing
+  * Messaging common solutions such as Kinesis/Kafka/SQS
+  * Messaging topology such as Storm
+  * Async workflow such as SWF
+
+Common Best practices:
+
+1. Avoid Single point of failure: using redundancy etc
+  * hosts in 3+ multiple data centers to escape from data center outage
+2. Drop synchronous dependency on non-critical process: using async
+  * User registration on emailing validation
+  * RoutingDocumentRecommendation publishing
+3. Optimistic locking for lock-free
+  * Using version number in DynamoDB
+4. Build itempotent write behavior.
+  * Using requestID such as FCInventoryService
+  * Using lastProcessedTimeStamp or sequence number to ignore delayed events.
 
 ## <a name='howtoans'> How to answer in interviews </a>
 
