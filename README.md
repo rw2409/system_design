@@ -59,7 +59,7 @@ These talks should give you decent ammo to start formulating some architectures 
   * Restful/SOAP(RPC)
   * load balancers,
   * Cookies
-  * Precompute/Caching/CDN
+  * Precompute/Caching/[CDN](http://www.51know.info/system_performance/cdn/cdn.html)
   * Security & authetication
 
 6. Distributed architecturing
