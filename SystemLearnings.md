@@ -63,6 +63,6 @@
 
 6. Notes
   * Kinesis delete messages automatically, no need for client to delete them.
-	* KCL uses DynamoDB to track each worker thread checkpoint into the stream, not related to our customization completion time check.
-	* There is one thread on each host for each KinesisConsumer (model+destination), are different destination threads for the same model accessing the same shard of the model stream? However if shard number is smaller than total nodes, there will be some idle threads not accessing the shard.
-
+  * KCL uses DynamoDB to track each worker thread checkpoint into the stream, not related to our customization completion time check.
+  * There is one thread on each host for each KinesisConsumer (model+destination), are different destination threads for the same model accessing the same shard of the model stream? However if shard number is smaller than total nodes, there will be some idle threads not accessing the shard.
+  * Kinesis sequence number: the number is unique for each data record in stream, the sequence number for the same partition key increase overtime.
