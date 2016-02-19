@@ -31,9 +31,9 @@
     * Each destination specific transformer, filter, emitter is defined in specific pipeline
     * The KinesisConnectorExecutor extends KinesisConnectorExecutorBase, which has a KCL Woker
     * Each KCL Worker syncs shard and lease information, tracking shard assignment and processing data from shards using RecordProcessor passed from KinesisConnectorRecordProcessor.
-      * [Resharding/Scaling/Parallel Model](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-scaling.html): each process(worker) has multiple shardConsumer for a shard.
-      * [Status Tracking in DynamoDB](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-ddb.html): each row is a shard.
-      * [De-dups](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-duplicates.html): first/last sequence schema for S3, elastic search ID and version always uses the latest sequence.
+      * **[Resharding/Scaling/Parallel Model](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-scaling.html):** each process(worker) has multiple shardConsumer for a shard.
+      * **[Status Tracking in DynamoDB](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-ddb.html):** each row is a shard.
+      * **[De-dups](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-duplicates.html):** first/last sequence schema for S3, elastic search ID and version always uses the latest sequence.
 
   4. KinesisMessageTransformer to deserialize from Record to KinesisMessage
     * KinesisMessage is a SharedType between consumer/producer, output model including JsonData
@@ -65,4 +65,4 @@
   * Kinesis delete messages automatically, no need for client to delete them.
   * KCL uses DynamoDB to track each worker thread checkpoint into the stream, not related to our customization completion time check.
   * There is one thread on each host for each KinesisConsumer (model+destination), are different destination threads for the same model accessing the same shard of the model stream? However if shard number is smaller than total nodes, there will be some idle threads not accessing the shard.
-  * Kinesis sequence number: the number is unique for each data record in stream, the sequence number for the same partition key increase overtime.
+  * Kinesis sequence number: the number is unique for each data record in stream, the sequence number for the same partition key increase overtime. This **could** be implemented as a distributed timestamp. All backups just load from the master queue.
