@@ -27,10 +27,15 @@
   2. For each tuple of (Model class, destination) create a KinesisConnectorExecutor for class/destination with factory pattern
   3. Each KinesisConnectorExecutor(abstract class) is subclassed by S3/Redshift/ElasticSearch Executor
     * Each specific Executor create KinesisConnectorRecordProcessorFactory with specific pipeline and config
-    * Each destination specific transformer, filter, emitter is defined in specific pipeline
     * Each KinesisConnectorRecordProcessor is created by KinesisConnectorRecordProcessorFactory, the factory includes destination specific logic.
+    * Each destination specific transformer, filter, emitter is defined in specific pipeline
+    * The KinesisConnectorExecutor extends KinesisConnectorExecutorBase, which has a KCL Woker
+    * Each KCL Worker syncs shard and lease information, tracking shard assignment and processing data from shards using RecordProcessor passed from KinesisConnectorRecordProcessor.
+      * [Resharding/Scaling/Parallel Model](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-scaling.html): each process(worker) has multiple shardConsumer for a shard.
+      * [Status Tracking in DynamoDB](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-ddb.html): each row is a shard.
+      * [De-dups](http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-record-processor-duplicates.html): first/last sequence schema for S3, elastic search ID and version always uses the latest sequence.
 
-  4. KinesisMessageTransformer to deserialize from Record to KinesisMessage 
+  4. KinesisMessageTransformer to deserialize from Record to KinesisMessage
     * KinesisMessage is a SharedType between consumer/producer, output model including JsonData
       * KinesisMessage(Kinesis producer of muninn svc) -(Json)-> Record(Kinesis) -(Json)-> KinesisMessage(muninn Kinesis Consumer)
 
@@ -40,7 +45,7 @@
     * Filters: skip records that is not needed
       * all uses tombstone records
       * only elastic search generate tombstone records
-    * Transformer (KinesisMessageTransformer mentioned earlier): 
+    * Transformer (KinesisMessageTransformer mentioned earlier):
       * Transform from KinesisMessage to output record
       * RedshiftTransformer: KinesisMessage->byte[], use dynamoDB table to track last updated time.
       * Each transformer udpate ThreadLocal shardData with current KinesisMessage messageTime.
@@ -59,8 +64,5 @@
 6. Notes
   * Kinesis delete messages automatically, no need for client to delete them.
 	* KCL uses DynamoDB to track each worker thread checkpoint into the stream, not related to our customization completion time check.
-	* There is one thread on each host for each KinesisConsumer (model+destination), are different destination threads for the same model accessing the same shard of the model stream? However if shard number is smaller than total nodes, there will be some idle threads not accessing the shard. There is contention on polling messages from the stream of the same shard?
+	* There is one thread on each host for each KinesisConsumer (model+destination), are different destination threads for the same model accessing the same shard of the model stream? However if shard number is smaller than total nodes, there will be some idle threads not accessing the shard.
 
-ER Project TODO:
-* Kinesis shard default number of 2 enough? Monitoring and shardNumber
-* Check Muninn/Akasha traffic
