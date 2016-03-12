@@ -9,7 +9,7 @@ If you are already familiar with the basics (given below) it will take you ~2 mo
 - [ ] [Where to start from?](#start)
 - [ ] [Basics](#basics)
 - [ ] [Steps how I approach the system design questions in interviews](#myapproach)
-- [ ] [Common Design questions](https://github.com/rw2409/system_design/blob/master/ClassicalQuestions)
+- [ ] [Common Design questions](https://github.com/rw2409/system_design/blob/master/ClassicalQuestions.md)
 - [ ] [architecture](#architecture)
 - [ ] [company engineering blog links](#blog)
 
