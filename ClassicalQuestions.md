@@ -31,5 +31,8 @@
 #Online interaction Chatting
 * Design an online poker game for multiplayer. Solve for persistence, concurrency, scale . Draw the ER diagram for this 
 
+#Geo POI
+* [POI nearby Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/Geo-Poi.md)
+
 #Low-level
 * Design malloc, free and [garbage collection system](http://courses.cs.washington.edu/courses/csep521/07wi/prj/rick.pdf) . What data structures to use? decorator pattern over malloc etc.
