@@ -17,6 +17,7 @@ Writing to disk is slow and locking will take too long.
   * reduces the write contention to 1/N.
   * A little bit Expensive
   * Write is slow (disk seek time)
+
 #Cached Read Counters#
 * Set-up
   * Single Memcached
@@ -34,7 +35,7 @@ Writing to disk is slow and locking will take too long.
   * Single Point of Failure
   * Write is fast
 
-#Combination of the above #
+#Combination of the Above#
 * Set-up
   * Multiple Memcached
   * Persistent DB
