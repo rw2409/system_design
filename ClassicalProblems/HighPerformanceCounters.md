@@ -1,12 +1,12 @@
 Optimistic locking will not help, too many writes need to happen
 Writing to disk is slow and locking will take too long.
 
-=Use cases=
+#Use cases#
 * votes count
 * Website visitor count
 * Number of comments
 
-=Sharding Counters=
+#Sharding Counters#
 * Set-up
   * N paritions, key value store
   * Trying to avoid serialized writes into the same entity
@@ -17,7 +17,7 @@ Writing to disk is slow and locking will take too long.
   * reduces the write contention to 1/N.
   * A little bit Expensive
   * Write is slow (disk seek time)
-=Cached Read Counters=
+#Cached Read Counters#
 * Set-up
   * Single Memcached
   * Persistent DB
@@ -34,7 +34,7 @@ Writing to disk is slow and locking will take too long.
   * Single Point of Failure
   * Write is fast
 
-=Combination of the above =
+#Combination of the above #
 * Set-up
   * Multiple Memcached
   * Persistent DB
