@@ -1,9 +1,12 @@
 #Online behavior
 * Design amazon's last viewed product page (can goes back to last 100)
-* Design amazon item recommendation system.
-* Design Airbnb recommendation system.
 
-#News Feeds/Social Network
+#Recommendation System
+* Design amazon item recommendation system.
+* Design feed recommendation system.
+* Design friends recommendation system.
+
+#News Feeds
 * Design a [picture sharing website](http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html). How will you store thumbnails, photos? Usage of CDNS? caching at various layers etc.
 * Design a news feed (eg facebook , twitter): [news feed](http://www.quora.com/Software-Engineering-Best-Practices/What-are-best-practices-for-building-something-like-a-News-Feed)
 
@@ -11,7 +14,12 @@
 * [Search engine](http://infolab.stanford.edu/~backrub/google.html) (generally asked with people who have some domain knowledge ) : basic crawling, collection, hashing etc. Dependes on your expertise on this topic
 * Design a site like [junglee.com](http://www.junglee.com/) i.e price comparision , availability on ecommerce websites. When and will you cache, how much to query, how to crawl efficiently over ecommerce sites, sharding of dbs, basic db design
 ##GeoSearch
-* Design a product based on maps, eg hotel / ATM finder given a location. 
+* Design a product based on maps, eg hotel / ATM finder given a location.
+* Design webcrawling
+* Design of query field, 每个record有个很大field，比如年龄，性别，爱好等。给一个field的组合，比如小于25岁，爱好体育,
+query满足这些组合条件的用户个数
+* Realtime Search
+
 
 #Stream processing, Counting, Trending
 * (very common:) top 'n' or most frequent items of a running stream of data
@@ -22,12 +30,12 @@
 * Design election commission architecture :
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/ElectionCommission.md)
 * [High Performance Counters](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/HighPerformanceCounters.md)
-* [Counting related problems](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/CountingRelatedProblems.md)  
+* [Counting related problems](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/CountingRelatedProblems.md)
   * Website Visitor Count
   * Trending HashTags
   * Photo referencing/comments count
   * Music play
-* [Probalistic Data Structures](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/ProbalisticDataStructures.md) 
+* [Probalistic Data Structures](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/ProbalisticDataStructures.md)
 
 Delivery times (exactly once), scaling, delay, expected accuracy.
 
@@ -38,7 +46,7 @@ Delivery times (exactly once), scaling, delay, expected accuracy.
 * A web application for chatting, eg [whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html), facebook chat. Issues of each, scaling problems, status and availablility notification etc.
 
 #Online interaction Chatting
-* Design an online poker game for multiplayer. Solve for persistence, concurrency, scale . Draw the ER diagram for this 
+* Design an online poker game for multiplayer. Solve for persistence, concurrency, scale . Draw the ER diagram for this
 
 #Geo POI
 * [POI nearby Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/Geo-Poi.md)
