@@ -13,7 +13,7 @@
 ##GeoSearch
 * Design a product based on maps, eg hotel / ATM finder given a location. 
 
-#Stream processing
+#Stream processing, Counting, Trending
 * (very common:) top 'n' or most frequent items of a running stream of data
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/TopOrMaxFromStream.md)
 * Design a logging system
@@ -21,6 +21,11 @@
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/LoggingMetricsSystem.md)
 * Design election commission architecture :
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/ElectionCommission.md)
+* [High Performance Counters](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/HighPerformanceCounters.md)
+* Website Visitor Count
+* Trending HashTags
+* Photo referencing/comments count
+* Music play
 
 #Simply Store
 * Design a [url compression system] (http://www.hiredintech.com/system-design/the-system-design-process/)
