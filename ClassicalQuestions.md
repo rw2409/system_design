@@ -22,10 +22,14 @@
 * Design election commission architecture :
   * [Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/ElectionCommission.md)
 * [High Performance Counters](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/HighPerformanceCounters.md)
-* Website Visitor Count
-* Trending HashTags
-* Photo referencing/comments count
-* Music play
+* [Counting related problems](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/CountingRelatedProblems.md)  
+  * Website Visitor Count
+  * Trending HashTags
+  * Photo referencing/comments count
+  * Music play
+* [Probalistic Data Structures](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/ProbalisticDataStructures.md) 
+
+Delivery times (exactly once), scaling, delay, expected accuracy.
 
 #Simply Store
 * Design a [url compression system] (http://www.hiredintech.com/system-design/the-system-design-process/)
