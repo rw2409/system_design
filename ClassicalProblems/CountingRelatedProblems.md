@@ -28,9 +28,15 @@ Rank the most shared urls for the last 10 minutes, for last hour, for last day, 
 There are total 100 millions url sharing happen every day.
 * Each time a URL is shared, an asycn process should be published to recordShare(URL)
 * Batch job can work, but it has scaling problem.
-* We can introduce a shared
+Pipeline:
+1. {query, timestamp} stream -> Send to Kinesis/Kafka stream, partitioned by URL
+1. Each partition count and generate top100 {query, sum_of_count, minute(time)}-Parition-minute
+1. Reduce node pick top1000 by rank and export to 1 minute summary. (URL, frequency in desc)
+1. 10-minute Consumer consumes events to pull last 10 minutes summary and update 10 minutes dashboard.
+1. Hourly Consumer consumes receives events to pull last 6 10-minutes summary and update hourly dashboard.
+1. Daily Consumer consumes receives events to pull last 24 hours summary and update daily dashboard.
 
-#Trending Detection#(Instagram)
+#Trending Detection#
 ##Definations##
 * Trend: Something mentioned more than usual (poplarity, novelty, timeliness)
 * Something: search terms, hashTags, placeTag
