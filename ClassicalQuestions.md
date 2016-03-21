@@ -13,13 +13,11 @@
 #Search
 * [Search engine](http://infolab.stanford.edu/~backrub/google.html) (generally asked with people who have some domain knowledge ) : basic crawling, collection, hashing etc. Dependes on your expertise on this topic
 * Design a site like [junglee.com](http://www.junglee.com/) i.e price comparision , availability on ecommerce websites. When and will you cache, how much to query, how to crawl efficiently over ecommerce sites, sharding of dbs, basic db design
-##GeoSearch
-* Design a product based on maps, eg hotel / ATM finder given a location.
 * Design webcrawling
 * Design of query field, 每个record有个很大field，比如年龄，性别，爱好等。给一个field的组合，比如小于25岁，爱好体育,
 query满足这些组合条件的用户个数
 * Realtime Search
-
+[Notes](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/SearchRelated.md)
 
 #Stream processing, Counting, Trending
 * (very common:) top 'n' or most frequent items of a running stream of data
@@ -43,13 +41,15 @@ Delivery times (exactly once), scaling, delay, expected accuracy.
 * Design a [url compression system] (http://www.hiredintech.com/system-design/the-system-design-process/)
 * Design dropbox's architecture. [good talk on this](https://www.youtube.com/watch?v=PE4gwstWhmc)
 * Design a system for collaberating over a document simulataneously (eg [google docs](https://neil.fraser.name/writing/sync/))
-* A web application for chatting, eg [whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html), facebook chat. Issues of each, scaling problems, status and availablility notification etc.
 
 #Online interaction Chatting
 * Design an online poker game for multiplayer. Solve for persistence, concurrency, scale . Draw the ER diagram for this
+* A web application for chatting, eg [whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html), facebook chat. Issues of each, scaling problems, status and availablility notification etc.
+
 
 #Geo POI
 * [POI nearby Solution](https://github.com/rw2409/system_design/blob/master/ClassicalProblems/Geo-Poi.md)
+* Design a product based on maps, eg hotel / ATM finder given a location.
 
 #Low-level
 * Design malloc, free and [garbage collection system](http://courses.cs.washington.edu/courses/csep521/07wi/prj/rick.pdf) . What data structures to use? decorator pattern over malloc etc.
